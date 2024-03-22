@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="free-educational-responsive-web-template-webEdu">
+    <meta name="author" content="webThemez.com">
+    <title>Script Generator</title>
+    <link rel="favicon" href="static/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="static/css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.js"></script>
+    <script src="static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <!-- Button for smallest screens -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="static/images/logo.png" alt="Techro HTML5 template"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav pull-right mainNav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Math Problem Solver</a></li>
+                    <li><a href="price.html">QuestionBank Generator</a></li>
+                    <li><a href="videos.html">QuestionBank Evaluator</a></li>
+                    <li class="active"><a href="contact.html">Script Generator</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    <!-- /.navbar -->
+
+    <header id="head" class="secondary">
+        <div class="container">
+            <h1>Script Generator</h1>
+            <p>Generates Script according to the Topic</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <section class="col-sm-12 maincontent">
+                <h3>Instructions</h3>
+                <p>Select the topic from the drop-down box and press Generate.</p>
+
+                <!-- Add dropdown box -->
+				<label for="userInput">Select an option:</label>
+				<select id="userInput" name="userInput">
+                    <option value="Stacks - Instroduction">Stacks - Instroduction</option>
+                    <option value="Stacks - Applications">Stacks - Applications</option>
+                    <option value="Stacks - Implementation and Performance Analysis">Stacks - Implementation and Performance Analysis</option>
+                    <option value="Stacks - Comparison of Implementations">Stacks - Comparison of Implementations</option>
+                    <option value="Queues - Introduction">Queues - Introduction</option>
+                    <option value="Queues - Exceptions">Queues - Exceptions</option>
+                    <option value="Queues - Applications">Queues - Applications</option>
+                    <option value="Queues - Implementation">Queues - Implementation</option>
+				</select>
+
+                <label for="userInput1">Select an number of words:</label>
+				<select id="userInput1" name="userInput1">
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
+				</select>
+	
+                <!-- Add output box -->
+                <div id="output" style="margin-top: 10px;"></div>
+
+                <!-- Add Generate button -->
+                <button id="enterButton">Generate</button>
+            </section>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="footer2">
+            <div class="container">
+                <div class="row">
+                    <div class="panel-body">
+                        <p class="simplenav">|
+                            <a href="index.html">Home</a> |
+                            <a href="courses.html">Math Problem Solver</a> |
+                            <a href="price.html">QuestionBank Generator</a> |
+                            <a href="videos.html">QuestionBank Evaluator</a> |
+                            <a href="contact.html">Script Generator</a> |
+                            <a href="about.html">About</a> |
+                        </p>
+                    </div>
+                </div>
+                <!-- /row of panels -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <!-- Your custom script -->
+    <script>
+        $(document).ready(function () {
+            $("#enterButton").click(function () {
+                var selectedTopic = $("#userInput").val();
+                var selectedTopicNumber = $('#userInput1').val();
+                $.ajax({
+                    url: "/contact.html",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({ "userInput": selectedTopic, "userInput1": selectedTopicNumber }),
+                    success: function (response) {
+                        $("#output").html(response);
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streaming Response</title>
+</head>
+<body>
+    <div id="output">Loading...</div>
+
+    <script>
+        // Function to handle streaming response
+        function handleStreamingResponse(response) {
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let partialResponse = '';
+
+            // Function to process each chunk of data
+            function processChunk({ done, value }) {
+                if (done) {
+                    // All data received, display final response
+                    document.getElementById('output').innerHTML = partialResponse;
+                    return;
+                }
+
+                // Decode and append data to partial response
+                partialResponse += decoder.decode(value, { stream: true });
+
+                // Continue reading next chunk
+                reader.read().then(processChunk);
+            }
+
+            // Start reading the response stream
+            reader.read().then(processChunk);
+        }
+
+        // Fetch the streaming response from the server
+        fetch('/contact.html', { method: 'POST' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Server returned ${response.status} - ${response.statusText}`);
+                }
+                handleStreamingResponse(response);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('output').innerHTML = 'Error: Unable to fetch streaming response';
+            });
+    </script>
+</body>
+</html>

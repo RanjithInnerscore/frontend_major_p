@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+</head>
+<body>
+    <h1>Conversational Chat with Mistral 🦙🗨️</h1>
+    <form action="/chat" method="post">
+        <label for="user_query">Enter your query:</label><br>
+        <input type="text" id="user_query" name="user_query"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if user_query %}
+    <p>Your Query: {{ user_query }}</p>
+    <p>Response:</p>
+    <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>

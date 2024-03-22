@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="free-educational-responsive-web-template-webEdu">
+    <meta name="author" content="webThemez.com">
+    <title>The QuestionBank Generator</title>
+    <link rel="favicon" href="/static/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- Custom styles for our template -->
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        window.onload = function () {
+            document.getElementById("enterButton").addEventListener("click", function () {
+                var selectedTopic = document.getElementById("userInput").value;
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/price.html", true); // Send POST request to /price endpoint
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        document.getElementById("output").innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send("userInput=" + selectedTopic);
+            });
+        };
+    </script>
+</head>
+
+<body>
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            <a class="navbar-brand" href="index.html">
+                <img src="/static/images/logo.png" alt="Techro HTML5 template"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav pull-right mainNav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Math Problem Solver</a></li>
+                <li class="active"><a href="price.html">QuestionBank Generator</a></li>
+                <li><a href="videos.html">QuestionBank Evaluator</a></li>
+                <li><a href="contact.html">Script Generator</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<!-- /.navbar -->
+
+<header id="head" class="secondary">
+    <div class="container">
+        <h1>Question Bank Generator</h1>
+        <p>Generates the question on specific topic</p>
+    </div>
+</header>
+
+<!-- container -->
+<div class="container">
+    <div class="row">
+        <!-- Article content -->
+        <section class="col-sm-12 maincontent">
+            <h3>Instructions</h3>
+            <p>Select the topic from the drop-down box and press Enter.</p>
+
+            <!-- Add dropdown box -->
+            <label for="userInput">Select an option:</label>
+            <select id="userInput" name="userInput">
+                <option value="3200221">Stacks - Instroduction</option>
+                <option value="3200222">Stacks - Applications</option>
+                <option value="3200223">Stacks - Implementation and Performance Analysis</option>
+                <option value="3200224">Stacks - Comparison of Implementations</option>
+                <option value="3200225">Stacks - Problems</option>
+                <option value="3200231">Queues - Introduction</option>
+                <option value="3200232">Queues - Exceptions</option>
+                <option value="3200233">Queues - Applications</option>
+                <option value="3200234">Queues - Implementation</option>
+                <option value="3200235">Queues - Problems</option>
+            </select>
+
+            <!-- Add output box -->
+            <div id="output" style="border: 1px solid #ccc; padding: 10px; margin-top: 10px;"></div>
+
+            <!-- Add Enter button -->
+            <button id="enterButton">Enter</button>
+        </section>
+    </div>
+</div>
+<!-- /container -->
+
+<footer id="footer">
+    <div class="footer2">
+        <div class="container">
+            <div class="row">
+                <div class="panel-body">
+                    <p class="simplenav">|
+                        <a href="index.html">Home</a> |
+                        <a href="courses.html">Math Problem Solver</a> |
+                        <a href="price.html">QuestionBank Generator</a> |
+                        <a href="videos.html">QuestionBank Evaluator</a> |
+                        <a href="contact.html">Script Generator</a> |
+                        <a href="about.html">About</a> |
+                    </p>
+                </div>
+            </div>
+            <!-- /row of panels -->
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

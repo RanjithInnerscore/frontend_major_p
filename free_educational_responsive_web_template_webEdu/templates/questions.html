@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions</title>
+</head>
+<body>
+    <ol>
+        {% for question in questions %}
+            {% set question_number = loop.index %}
+            <li>{{ question }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
